@@ -74,6 +74,11 @@
 	border-top: solid 2px #eeeeee;
 }
 
+.file-section {
+	padding: 4rem 4rem 2rem 4rem;
+	border-top: solid 2px #eeeeee;
+}
+
 .section-heading {
 	margin-bottom: 2rem;
 	text-align: center;
@@ -123,6 +128,61 @@
 	color: #4a5560;
 	font-size: 0.95rem;
 	padding: 0.85rem 1rem;
+}
+
+.file-category-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+}
+
+.file-category-card {
+	border: solid 2px #eeeeee;
+	border-radius: 6px;
+	background: #ffffff;
+	padding: 1.25rem;
+}
+
+.file-category-card header {
+	margin-bottom: 1rem;
+}
+
+.file-category-card h3 {
+	font-size: 1.05rem;
+	letter-spacing: 0.02em;
+	margin: 0;
+}
+
+.file-category-card p {
+	font-size: 0.95rem;
+	margin-bottom: 0;
+}
+
+.asset-preview {
+	display: block;
+	border: solid 1px #eeeeee;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+	overflow: hidden;
+	background: #f4f7f9;
+}
+
+.asset-preview img {
+	display: block;
+	width: 100%;
+	height: 12rem;
+	object-fit: contain;
+}
+
+.file-list {
+	font-size: 0.9rem;
+	margin-bottom: 0;
+	padding-left: 1.1rem;
+	word-break: break-word;
+}
+
+.file-list li {
+	margin-bottom: 0.45rem;
 }
 
 .map-grid {
@@ -207,12 +267,14 @@
 
 @media screen and (max-width: 980px) {
 	.summary-grid,
+	.file-category-grid,
 	.map-grid {
 		grid-template-columns: 1fr;
 	}
 
 	.pollutant-section,
-	.map-demo-section {
+	.map-demo-section,
+	.file-section {
 		padding: 3rem 2rem 1rem 2rem;
 	}
 }
