@@ -129,6 +129,33 @@ html {
 	border-bottom: solid 2px #eeeeee;
 }
 
+.pollution-layer-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	padding: 0 1.15rem 1.15rem 1.15rem;
+}
+
+.pollution-layer-panel {
+	border: solid 2px #eeeeee;
+	border-radius: 6px;
+	overflow: hidden;
+	background: #ffffff;
+}
+
+.pollution-layer-panel h4 {
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	margin: 0;
+	padding: 0.85rem 0.95rem;
+}
+
+.pollution-layer-panel .category-map {
+	height: 16rem;
+	border-left: 0;
+	border-right: 0;
+}
+
 .map-status {
 	color: #4a5560;
 	font-size: 0.88rem;

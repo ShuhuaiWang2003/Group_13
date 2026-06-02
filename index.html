@@ -196,8 +196,28 @@
 									<option value="satellite">Satellite</option>
 								</select>
 							</div>
-							<div class="category-map" id="pm10-pollution-map" data-layer="Bulgaria_GIS_pm10_localtest:Bulgaria_CAMS_pm10_2023_12" data-geoserver-url="http://localhost:8082/geoserver/Bulgaria_GIS_pm10_localtest/wms" data-map-center-lat="42.7" data-map-center-lng="25.4" data-map-zoom="7"></div>
-							<p class="map-status">GeoServer WMS layer placeholder: your_workspace:pm10_pollution</p>
+							<div class="pollution-layer-grid">
+								<div class="pollution-layer-panel">
+									<h4>BG 2023 12</h4>
+									<div class="category-map" id="pm10-pollution-bg-2023-12-map" data-layer="Bulgaria_GIS_pm10_localtest:BG_2023_12" data-geoserver-url="http://localhost:8082/geoserver/Bulgaria_GIS_pm10_localtest/wms" data-map-center-lat="42.7" data-map-center-lng="25.4" data-map-zoom="7"></div>
+									<p class="map-status">GeoServer WMS layer: Bulgaria_GIS_pm10_localtest:BG_2023_12</p>
+								</div>
+								<div class="pollution-layer-panel">
+									<h4>Average PM10 2023</h4>
+									<div class="category-map" id="pm10-pollution-average-2023-map" data-layer="Bulgaria_GIS_pm10_localtest:Bulgaria_average_pm10_2023" data-geoserver-url="http://localhost:8082/geoserver/Bulgaria_GIS_pm10_localtest/wms" data-map-center-lat="42.7" data-map-center-lng="25.4" data-map-zoom="7"></div>
+									<p class="map-status">GeoServer WMS layer: Bulgaria_GIS_pm10_localtest:Bulgaria_average_pm10_2023</p>
+								</div>
+								<div class="pollution-layer-panel">
+									<h4>PM10 AMAC 2021-2023</h4>
+									<div class="category-map" id="pm10-pollution-amac-map" data-layer="Bulgaria_GIS_pm10_localtest:Bulgaria_pm10_2021_2023_AMAC_map" data-geoserver-url="http://localhost:8082/geoserver/Bulgaria_GIS_pm10_localtest/wms" data-map-center-lat="42.7" data-map-center-lng="25.4" data-map-zoom="7"></div>
+									<p class="map-status">GeoServer WMS layer: Bulgaria_GIS_pm10_localtest:Bulgaria_pm10_2021_2023_AMAC_map</p>
+								</div>
+								<div class="pollution-layer-panel">
+									<h4>PM10 Concentration 2023</h4>
+									<div class="category-map" id="pm10-pollution-concentration-2023-map" data-layer="Bulgaria_GIS_pm10_localtest:Bulgaria_pm10_concentration_map_2023" data-geoserver-url="http://localhost:8082/geoserver/Bulgaria_GIS_pm10_localtest/wms" data-map-center-lat="42.7" data-map-center-lng="25.4" data-map-zoom="7"></div>
+									<p class="map-status">GeoServer WMS layer: Bulgaria_GIS_pm10_localtest:Bulgaria_pm10_concentration_map_2023</p>
+								</div>
+							</div>
 						</article>
 						<article class="thematic-map-card">
 							<header>
