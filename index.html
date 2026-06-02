@@ -6,11 +6,12 @@
 -->
 <html>
 	<head>
-		<title>GIS Lab 2026 - Air Pollution Maps</title>
+		<title>GIS Lab 2026 - GIS Layer Viewer</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/custom.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -18,8 +19,8 @@
 		<div id="wrapper" class="fade-in">
 
 			<div id="intro">
-				<h1>Air Pollution<br />Mapping</h1>
-				<p>GIS Lab 2026 web preview for PM2.5, PM10, and NO2 map layers. <br />GeoServer image slots are reserved for WMS or exported map images.</p>
+				<h1>GIS Layer<br />Viewer</h1>
+				<p>GIS Lab 2026 web preview for GeoServer layers from TIF or GPKG sources. <br />Choose a basemap, then display one thematic layer above it.</p>
 				<ul class="actions">
 					<li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 				</ul>
@@ -32,9 +33,8 @@
 			<nav id="nav">
 				<ul class="links">
 					<li class="active"><a href="#overview">Overview</a></li>
-					<li><a href="#pm25">PM2.5</a></li>
-					<li><a href="#pm10">PM10</a></li>
-					<li><a href="#no2">NO2</a></li>
+					<li><a href="#map-demo">Map Viewer</a></li>
+					<li><a href="#notes">GeoServer Notes</a></li>
 				</ul>
 			</nav>
 
@@ -43,140 +43,98 @@
 				<article id="overview" class="post featured lab-overview">
 					<header class="major">
 						<span class="date">GIS Laboratory 2026</span>
-						<h2>Air Quality Web Map Collection</h2>
-						<p>This page is a draft structure for displaying pollutant concentration maps. The current version keeps all GeoServer image locations empty and shows clear placeholders for the final map layers.</p>
+						<h2>Interactive GIS Layer Demo</h2>
+						<p>This page is a draft structure for displaying TIF or GPKG data published through GeoServer. The map starts with a selectable basemap and reserves overlay choices for pollution, landcover, and population layers.</p>
 					</header>
 					<div class="summary-grid">
-						<a class="summary-tile" href="#pm25">
-							<span class="summary-code">PM2.5</span>
-							<strong>Fine particulate matter</strong>
-							<small>Reserved map slots and layer metadata.</small>
+						<a class="summary-tile" href="#map-demo">
+							<span class="summary-code">Base</span>
+							<strong>OSM or satellite</strong>
+							<small>Selectable background map.</small>
 						</a>
-						<a class="summary-tile" href="#pm10">
-							<span class="summary-code">PM10</span>
-							<strong>Coarse particulate matter</strong>
-							<small>Reserved map slots and layer metadata.</small>
+						<a class="summary-tile" href="#map-demo">
+							<span class="summary-code">Layer</span>
+							<strong>Pollution / landcover / population</strong>
+							<small>One GeoServer overlay at a time.</small>
 						</a>
-						<a class="summary-tile" href="#no2">
-							<span class="summary-code">NO2</span>
-							<strong>Nitrogen dioxide</strong>
-							<small>Reserved map slots and layer metadata.</small>
+						<a class="summary-tile" href="#notes">
+							<span class="summary-code">WMS</span>
+							<strong>TIF or GPKG through GeoServer</strong>
+							<small>No local PNG dependency.</small>
 						</a>
 					</div>
 				</article>
 
-				<section class="pollutant-section" id="pm25">
+				<section class="map-demo-section" id="map-demo">
 					<header class="major section-heading">
-						<span class="date">Category 01</span>
-						<h2>PM2.5</h2>
-						<p>Fine particulate matter map outputs. Replace the empty GeoServer fields when the WMS layers or exported images are ready.</p>
+						<span class="date">Interactive Demo</span>
+						<h2>Basemap + GeoServer Layer</h2>
+						<p>Select either an OSM or satellite basemap, then choose one overlay layer published from TIF or GPKG data.</p>
 					</header>
-					<div class="map-grid">
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="pm25" data-geoserver-url="" data-layer="pm25_concentration" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>PM2.5 Concentration Map</strong>
-								<p>Reserved for layer: pm25_concentration</p>
-							</div>
-							<h3>PM2.5 Concentration</h3>
-							<p>Space reserved for the final PM2.5 concentration map from GeoServer.</p>
-						</article>
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="pm25" data-geoserver-url="" data-layer="pm25_classification" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>PM2.5 Classification Map</strong>
-								<p>Reserved for layer: pm25_classification</p>
-							</div>
-							<h3>PM2.5 Classification</h3>
-							<p>Space reserved for a classified PM2.5 output, legend, or thematic layer.</p>
-						</article>
+					<div class="viewer-shell">
+						<div class="viewer-toolbar" aria-label="Map controls">
+							<label for="basemap-select">
+								Basemap
+								<select id="basemap-select">
+									<option value="osm">OSM</option>
+									<option value="satellite">Satellite</option>
+								</select>
+							</label>
+							<label for="layer-select">
+								Layer
+								<select id="layer-select">
+									<option value="none">None</option>
+									<option value="pollution">Pollution</option>
+									<option value="landcover">Landcover</option>
+									<option value="population">Population</option>
+								</select>
+							</label>
+						</div>
+						<div
+							id="demo-map"
+							data-geoserver-url=""
+							data-layer-pollution="your_workspace:pollution"
+							data-layer-landcover="your_workspace:landcover"
+							data-layer-population="your_workspace:population"
+							data-layer-style-pollution=""
+							data-layer-style-landcover=""
+							data-layer-style-population=""
+							data-map-center-lat="45.46"
+							data-map-center-lng="9.19"
+							data-map-zoom="9">
+						</div>
+						<div class="viewer-status" id="viewer-status">No GeoServer overlay selected.</div>
 					</div>
 				</section>
 
-				<section class="pollutant-section" id="pm10">
-					<header class="major section-heading">
-						<span class="date">Category 02</span>
-						<h2>PM10</h2>
-						<p>Coarse particulate matter map outputs. GeoServer image locations are intentionally blank in this draft.</p>
-					</header>
-					<div class="map-grid">
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="pm10" data-geoserver-url="" data-layer="pm10_concentration" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>PM10 Concentration Map</strong>
-								<p>Reserved for layer: pm10_concentration</p>
-							</div>
-							<h3>PM10 Concentration</h3>
-							<p>Space reserved for the final PM10 concentration map from GeoServer.</p>
-						</article>
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="pm10" data-geoserver-url="" data-layer="pm10_classification" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>PM10 Classification Map</strong>
-								<p>Reserved for layer: pm10_classification</p>
-							</div>
-							<h3>PM10 Classification</h3>
-							<p>Space reserved for a classified PM10 output, legend, or thematic layer.</p>
-						</article>
-					</div>
-				</section>
-
-				<section class="pollutant-section" id="no2">
-					<header class="major section-heading">
-						<span class="date">Category 03</span>
-						<h2>NO2</h2>
-						<p>Nitrogen dioxide map outputs. The map containers below are prepared for future GeoServer connections.</p>
-					</header>
-					<div class="map-grid">
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="no2" data-geoserver-url="" data-layer="no2_concentration" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>NO2 Concentration Map</strong>
-								<p>Reserved for layer: no2_concentration</p>
-							</div>
-							<h3>NO2 Concentration</h3>
-							<p>Space reserved for the final NO2 concentration map from GeoServer.</p>
-						</article>
-						<article class="map-card">
-							<div class="geoserver-slot" data-pollutant="no2" data-geoserver-url="" data-layer="no2_classification" data-style="" data-format="image/png">
-								<span class="slot-kicker">GeoServer image placeholder</span>
-								<strong>NO2 Classification Map</strong>
-								<p>Reserved for layer: no2_classification</p>
-							</div>
-							<h3>NO2 Classification</h3>
-							<p>Space reserved for a classified NO2 output, legend, or thematic layer.</p>
-						</article>
-					</div>
-				</section>
-
-				<section class="post lab-notes">
+				<section class="post lab-notes" id="notes">
 					<header>
 						<h2>GeoServer Connection Notes</h2>
 					</header>
-					<p>The placeholder blocks already include empty attributes for future GeoServer integration. When the final WMS or image URLs are available, fill in <code>data-geoserver-url</code>, <code>data-layer</code>, <code>data-style</code>, and image source values.</p>
+					<p>The map viewer is prepared for layers published from TIF or GPKG data through GeoServer WMS. Fill in <code>data-geoserver-url</code> and the three <code>data-layer-*</code> values in the map container when the final layers are ready.</p>
 					<table>
 						<thead>
 							<tr>
-								<th>Pollutant</th>
-								<th>Reserved layer names</th>
+								<th>Layer option</th>
+								<th>Reserved GeoServer layer name</th>
 								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>PM2.5</td>
-								<td>pm25_concentration, pm25_classification</td>
-								<td>Waiting for GeoServer image</td>
+								<td>Pollution</td>
+								<td>your_workspace:pollution</td>
+								<td>Waiting for GeoServer WMS</td>
 							</tr>
 							<tr>
-								<td>PM10</td>
-								<td>pm10_concentration, pm10_classification</td>
-								<td>Waiting for GeoServer image</td>
+								<td>Landcover</td>
+								<td>your_workspace:landcover</td>
+								<td>Waiting for GeoServer WMS</td>
 							</tr>
 							<tr>
-								<td>NO2</td>
-								<td>no2_concentration, no2_classification</td>
-								<td>Waiting for GeoServer image</td>
+								<td>Population</td>
+								<td>your_workspace:population</td>
+								<td>Waiting for GeoServer WMS</td>
 							</tr>
 						</tbody>
 					</table>
@@ -187,16 +145,16 @@
 			<footer id="footer">
 				<section>
 					<h2>Project Information</h2>
-					<p>GIS Lab 2026 air pollution web map draft. Final maps, legends, and analysis text can be added after the GeoServer layers are published.</p>
+					<p>GIS Lab 2026 interactive layer viewer draft. Final maps, legends, and analysis text can be added after the GeoServer layers are published.</p>
 				</section>
 				<section class="split contact">
 					<section>
 						<h3>Categories</h3>
-						<p>PM2.5 / PM10 / NO2</p>
+						<p>Pollution / Landcover / Population</p>
 					</section>
 					<section>
 						<h3>Map Source</h3>
-						<p>GeoServer WMS placeholders</p>
+						<p>TIF or GPKG layers through GeoServer WMS</p>
 					</section>
 				</section>
 			</footer>
@@ -214,6 +172,8 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+		<script src="assets/js/map-demo.js"></script>
 
 	</body>
 </html>

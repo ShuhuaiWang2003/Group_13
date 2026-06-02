@@ -1,35 +1,36 @@
-# GIS Lab 2026 Air Pollution Web Map
+# GIS Lab 2026 GIS Layer Viewer
 
-This repository contains a static web page for the GIS Lab 2026 air pollution map project.
+This repository contains a static web page for the GIS Lab 2026 map project.
 
-The current draft includes three pollutant categories:
+The current draft includes an interactive map viewer with:
 
-- PM2.5
-- PM10
-- NO2
+- A selectable basemap: OSM or satellite imagery.
+- A selectable GeoServer overlay layer: pollution, landcover, or population.
+- Placeholder settings for TIF or GPKG data published through GeoServer WMS.
 
-Each category contains reserved GeoServer image placeholders. The final GeoServer WMS or exported map image URLs can be added later in `index.html` through the empty `data-geoserver-url` fields.
+The page does not depend on local PNG files. The final map layers should be published through GeoServer and loaded as WMS layers.
 
 ## Project Structure
 
 - `index.html`: Main web page.
 - `assets/css/custom.css`: Custom styling for the project layout and GeoServer placeholders.
+- `assets/js/map-demo.js`: Leaflet map setup for basemap and GeoServer layer switching.
 - `assets/`: HTML5 UP template styles, scripts, and web fonts.
 - `images/`: Template background and image assets.
 - `LICENSE.txt`: Original HTML5 UP template license.
 
 ## GeoServer Placeholder Fields
 
-The map slots are marked with attributes such as:
+The map viewer is configured in `index.html` with attributes such as:
 
 ```html
 data-geoserver-url=""
-data-layer="pm25_concentration"
-data-style=""
-data-format="image/png"
+data-layer-pollution="your_workspace:pollution"
+data-layer-landcover="your_workspace:landcover"
+data-layer-population="your_workspace:population"
 ```
 
-When the GeoServer layers are ready, replace the empty URL values or add image sources inside the placeholder blocks.
+When the GeoServer layers are ready, replace the empty WMS URL and placeholder layer names.
 
 ## Preview
 

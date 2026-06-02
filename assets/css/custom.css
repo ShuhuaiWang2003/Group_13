@@ -69,9 +69,60 @@
 	border-top: solid 2px #eeeeee;
 }
 
+.map-demo-section {
+	padding: 4rem 4rem 2rem 4rem;
+	border-top: solid 2px #eeeeee;
+}
+
 .section-heading {
 	margin-bottom: 2rem;
 	text-align: center;
+}
+
+.viewer-shell {
+	border: solid 2px #eeeeee;
+	border-radius: 6px;
+	background: #ffffff;
+	overflow: hidden;
+}
+
+.viewer-toolbar {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+	padding: 1rem;
+	border-bottom: solid 2px #eeeeee;
+	background: #f8fafb;
+}
+
+.viewer-toolbar label {
+	color: #212931;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 0.8rem;
+	font-weight: 900;
+	letter-spacing: 0.08em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.viewer-toolbar select {
+	margin-top: 0.4rem;
+	width: 100%;
+	height: 2.75rem;
+	border-radius: 4px;
+}
+
+#demo-map {
+	width: 100%;
+	height: 34rem;
+	background: #eef3f6;
+}
+
+.viewer-status {
+	border-top: solid 2px #eeeeee;
+	color: #4a5560;
+	font-size: 0.95rem;
+	padding: 0.85rem 1rem;
 }
 
 .map-grid {
@@ -160,7 +211,8 @@
 		grid-template-columns: 1fr;
 	}
 
-	.pollutant-section {
+	.pollutant-section,
+	.map-demo-section {
 		padding: 3rem 2rem 1rem 2rem;
 	}
 }
@@ -176,5 +228,13 @@
 
 	.geoserver-slot strong {
 		font-size: 1.05rem;
+	}
+
+	.viewer-toolbar {
+		grid-template-columns: 1fr;
+	}
+
+	#demo-map {
+		height: 24rem;
 	}
 }
