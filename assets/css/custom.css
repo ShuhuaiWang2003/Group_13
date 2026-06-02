@@ -12,7 +12,7 @@ html {
 
 .lab-overview .major p,
 .section-heading p {
-	max-width: 52rem;
+	max-width: 54rem;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -74,111 +74,113 @@ html {
 	text-align: center;
 }
 
-.thematic-map-grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 1.25rem;
-	align-items: start;
-}
-
-.thematic-map-card {
+.pollutant-map-shell {
 	border: solid 2px #eeeeee;
 	border-radius: 6px;
 	background: #ffffff;
 	overflow: hidden;
 }
 
-.thematic-map-card header {
-	padding: 1.15rem 1.15rem 0.6rem 1.15rem;
-}
-
-.thematic-map-card h3 {
-	font-size: 1.05rem;
-	letter-spacing: 0.02em;
-	margin: 0;
-}
-
-.mini-toolbar {
+.map-toolbar {
 	display: grid;
-	grid-template-columns: 1fr;
-	gap: 0.35rem;
-	padding: 0 1.15rem 1rem 1.15rem;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	gap: 1rem;
+	padding: 1rem;
+	background: #f8fafb;
+	border-bottom: solid 2px #eeeeee;
 }
 
-.mini-toolbar label {
+.map-toolbar label {
 	color: #212931;
 	font-family: "Source Sans Pro", Helvetica, sans-serif;
-	font-size: 0.75rem;
+	font-size: 0.78rem;
 	font-weight: 900;
 	letter-spacing: 0.08em;
 	margin: 0;
 	text-transform: uppercase;
 }
 
-.mini-toolbar select {
-	height: 2.5rem;
+.map-toolbar select {
+	height: 2.75rem;
+	margin-top: 0.45rem;
+	width: 100%;
 	border-radius: 4px;
-	width: 100%;
 }
 
-.category-map {
+.pollutant-map {
 	width: 100%;
-	height: 18rem;
+	height: 36rem;
 	background: #eef3f6;
-	border-top: solid 2px #eeeeee;
-	border-bottom: solid 2px #eeeeee;
-}
-
-.pollution-layer-grid {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 1rem;
-	padding: 0 1.15rem 1.15rem 1.15rem;
-}
-
-.pollution-layer-panel {
-	border: solid 2px #eeeeee;
-	border-radius: 6px;
 	overflow: hidden;
-	background: #ffffff;
+	position: relative;
 }
 
-.pollution-layer-panel h4 {
-	font-size: 0.85rem;
-	letter-spacing: 0.04em;
-	margin: 0;
-	padding: 0.85rem 0.95rem;
+.simple-map-tile {
+	height: 256px;
+	position: absolute;
+	width: 256px;
 }
 
-.pollution-layer-panel .category-map {
-	height: 16rem;
-	border-left: 0;
-	border-right: 0;
+.simple-map-overlay {
+	height: 100%;
+	inset: 0;
+	object-fit: fill;
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+}
+
+.map-attribution {
+	background: rgba(255, 255, 255, 0.86);
+	bottom: 0;
+	color: #4a5560;
+	font-size: 0.72rem;
+	padding: 0.15rem 0.4rem;
+	position: absolute;
+	right: 0;
+	z-index: 3;
 }
 
 .map-status {
+	border-top: solid 2px #eeeeee;
 	color: #4a5560;
-	font-size: 0.88rem;
+	font-size: 0.95rem;
 	line-height: 1.45;
 	margin: 0;
-	padding: 0.85rem 1.15rem;
+	padding: 0.85rem 1rem;
+}
+
+.supporting-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+	gap: 1.25rem;
+	margin-top: 1.5rem;
 }
 
 .supporting-output {
-	border-top: solid 2px #eeeeee;
+	border: solid 2px #eeeeee;
+	border-radius: 6px;
+	background: #ffffff;
 	padding: 1.15rem;
 }
 
-.supporting-output h4 {
-	font-size: 0.9rem;
+.supporting-output h3 {
+	font-size: 1rem;
 	letter-spacing: 0.04em;
 	margin: 0 0 0.9rem 0;
+}
+
+.supporting-output h4 {
+	font-size: 0.88rem;
+	letter-spacing: 0.04em;
+	margin: 1rem 0 0.6rem 0;
 }
 
 .supporting-output img {
 	display: block;
 	width: 100%;
-	max-height: 19rem;
+	max-height: 24rem;
 	object-fit: contain;
 	background: #f4f7f9;
 	border: solid 1px #eeeeee;
@@ -210,23 +212,24 @@ html {
 	letter-spacing: 0;
 }
 
-@media screen and (max-width: 1200px) {
-	.thematic-map-grid {
-		grid-template-columns: 1fr;
-	}
-
-	.category-map {
-		height: 24rem;
-	}
-}
-
 @media screen and (max-width: 980px) {
-	.summary-grid {
+	.summary-grid,
+	.supporting-grid {
 		grid-template-columns: 1fr;
 	}
 
 	.pollutant-section {
 		padding: 3rem 2rem 1rem 2rem;
+	}
+
+	.pollutant-map {
+		height: 30rem;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.map-toolbar {
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -235,11 +238,11 @@ html {
 		font-size: 1.5rem;
 	}
 
-	.category-map {
-		height: 18rem;
+	.pollutant-map {
+		height: 23rem;
 	}
 
 	.supporting-output img {
-		max-height: 15rem;
+		max-height: 16rem;
 	}
 }
