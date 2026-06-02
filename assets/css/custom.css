@@ -151,6 +151,27 @@ html {
 	padding: 0.85rem 1rem;
 }
 
+.map-legend {
+	border-top: solid 2px #eeeeee;
+	background: #ffffff;
+	padding: 1rem;
+}
+
+.map-legend h4 {
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.65rem 0;
+}
+
+.map-legend img {
+	display: block;
+	max-width: 100%;
+	background: #ffffff;
+	border: solid 1px #eeeeee;
+	border-radius: 4px;
+	padding: 0.45rem;
+}
+
 .supporting-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);

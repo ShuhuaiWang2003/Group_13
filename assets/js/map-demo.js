@@ -55,11 +55,44 @@
 		return baseUrl + (baseUrl.indexOf("?") === -1 ? "?" : "&") + params.toString();
 	}
 
+	function buildLegendUrl(baseUrl, layerName, styleName) {
+		var params = new URLSearchParams({
+			service: "WMS",
+			version: "1.1.1",
+			request: "GetLegendGraphic",
+			format: "image/png",
+			layer: layerName,
+			legend_options: "forceLabels:on;fontAntiAliasing:true"
+		});
+
+		if (styleName) {
+			params.set("style", styleName);
+		}
+
+		return baseUrl + (baseUrl.indexOf("?") === -1 ? "?" : "&") + params.toString();
+	}
+
+	function getLegendNode(shell) {
+		var legendNode = shell.querySelector(".map-legend");
+
+		if (!legendNode) {
+			legendNode = document.createElement("div");
+			legendNode.className = "map-legend";
+			legendNode.hidden = true;
+			legendNode.innerHTML = '<h4>Legend</h4><img alt="Selected layer legend" />';
+			shell.appendChild(legendNode);
+		}
+
+		return legendNode;
+	}
+
 	function renderSimpleMap(shell) {
 		var mapNode = shell.querySelector(".pollutant-map");
 		var basemapSelect = shell.querySelector(".basemap-select");
 		var layerSelect = shell.querySelector(".layer-select");
 		var statusNode = shell.querySelector(".map-status");
+		var legendNode = getLegendNode(shell);
+		var legendImage = legendNode.querySelector("img");
 
 		if (!mapNode || !basemapSelect || !layerSelect) {
 			return;
@@ -89,6 +122,7 @@
 		var label = selectedOption ? selectedOption.dataset.label || selectedOption.textContent : "";
 		var layerName = selectedOption ? selectedOption.dataset.layer || "" : "";
 		var geoserverUrl = selectedOption ? selectedOption.dataset.geoserverUrl || "" : "";
+		var styleName = selectedOption ? selectedOption.dataset.style || "" : "";
 		var boundsNorthWest = worldToLonLat(topLeft.x, topLeft.y, zoom);
 		var boundsSouthEast = worldToLonLat(bottomRight.x, bottomRight.y, zoom);
 		var html = "";
@@ -114,12 +148,22 @@
 			if (statusNode) {
 				statusNode.textContent = "Displaying GeoServer WMS layer: " + layerName;
 			}
+
+			if (legendImage) {
+				legendImage.src = buildLegendUrl(geoserverUrl, layerName, styleName);
+				legendImage.alt = label + " legend";
+			}
+
+			legendNode.hidden = false;
 		} else if (selectedOption && selectedOption.value !== "none") {
 			if (statusNode) {
 				statusNode.textContent = "Selected layer: " + label + ". Add a GeoServer WMS URL and layer name to display it.";
 			}
+
+			legendNode.hidden = true;
 		} else if (statusNode) {
 			statusNode.textContent = "No overlay selected.";
+			legendNode.hidden = true;
 		}
 
 		html += '<div class="map-attribution">' + (basemapSelect.value === "satellite" ? "Tiles &copy; Esri" : "&copy; OpenStreetMap contributors") + '</div>';

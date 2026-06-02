@@ -201,6 +201,7 @@
 						<h2>GeoServer Connection Notes</h2>
 					</header>
 					<p>Each pollutant map has one basemap and one selectable overlay layer. To connect a layer, put the WMS endpoint in <code>data-geoserver-url</code> and the full workspace-qualified layer name in <code>data-layer</code> on the corresponding dropdown option.</p>
+					<p>Legend images are loaded separately with GeoServer <code>GetLegendGraphic</code>. The WMS map request shows the layer, while the legend request shows the color scale for the selected layer.</p>
 					<table>
 						<thead>
 							<tr>
