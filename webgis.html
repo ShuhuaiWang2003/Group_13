@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/custom.css?v=20260604-pages" />
+		<link rel="stylesheet" href="assets/css/custom.css?v=20260604-results" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -36,31 +36,6 @@
 			</nav>
 
 			<div id="main">
-
-				<article id="overview" class="post featured lab-overview">
-					<header class="major">
-						<span class="date">GIS Laboratory 2026</span>
-						<h2>Three Independent Pollutant Maps</h2>
-						<p>The largest categories are NO2, PM2.5, and PM10. Each category has one full-width map: choose the basemap first, then choose which thematic layer appears above it.</p>
-					</header>
-					<div class="summary-grid">
-						<a class="summary-tile" href="#no2">
-							<span class="summary-code">NO2</span>
-							<strong>Nitrogen dioxide</strong>
-							<small>One basemap, selectable overlay layer.</small>
-						</a>
-						<a class="summary-tile" href="#pm25">
-							<span class="summary-code">PM2.5</span>
-							<strong>Fine particulate matter</strong>
-							<small>One basemap, selectable overlay layer.</small>
-						</a>
-						<a class="summary-tile" href="#pm10">
-							<span class="summary-code">PM10</span>
-							<strong>Coarse particulate matter</strong>
-							<small>One basemap, selectable overlay layer.</small>
-						</a>
-					</div>
-				</article>
 
 				<section class="pollutant-section" id="no2">
 					<header class="major section-heading">
@@ -161,89 +136,6 @@
 						<div class="pollutant-map" id="pm10-map" data-map-center-lat="42.7661" data-map-center-lng="25.2383" data-map-zoom="7"></div>
 						<p class="map-status">No overlay selected.</p>
 					</div>
-					<div class="output-viewer">
-						<div class="output-toolbar">
-							<label for="output-category">
-								Output Category
-								<select id="output-category" class="output-category-select">
-									<option value="pollution">Pollution</option>
-									<option value="landcover" selected>Land Cover</option>
-									<option value="population">Population</option>
-								</select>
-							</label>
-						</div>
-						<div class="output-display">
-							<article class="output-panel" data-output-panel="pollution" hidden>
-								<h3>Pollution Output</h3>
-								<div class="output-placeholder">
-									<p>No pollution chart or table file is attached yet.</p>
-								</div>
-							</article>
-							<article class="output-panel" data-output-panel="landcover">
-								<h3>Land Cover Output</h3>
-								<img class="output-image" src="assets/data/landcover/zonal-statistics-lcc.png" alt="Zonal Statistics by Land Cover Change" />
-								<h4>Bulgaria 2021-2023 Data Table</h4>
-								<div class="table-wrapper output-table-frame">
-									<table class="compact-data-table">
-										<thead>
-											<tr>
-												<th>Indicator</th>
-												<th>Value</th>
-												<th>Category</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr><td>stability(persistence)</td><td>0.9493</td><td>N/A (Baseline)</td></tr>
-											<tr><td>Primary source of gain</td><td>0.6216</td><td>Rangeland (code11)</td></tr>
-											<tr><td>Secondary source of gain</td><td>0.3295</td><td>Crops (code5)</td></tr>
-											<tr><td>Third source of gain</td><td>0.0333</td><td>Built (code7)</td></tr>
-											<tr><td>Primary source of destination</td><td>0.8436</td><td>Rangeland (code11)</td></tr>
-											<tr><td>Secondary source of destination</td><td>0.1288</td><td>Crops (code5)</td></tr>
-											<tr><td>Third source of destination</td><td>0.0184</td><td>Built (code7)</td></tr>
-										</tbody>
-									</table>
-								</div>
-							</article>
-							<article class="output-panel" data-output-panel="population" hidden>
-								<h3>Population Output</h3>
-								<img class="output-image" src="assets/data/population/pm10-population-exposure.png" alt="PM10 Population Exposure in Bulgaria 2023" />
-							</article>
-						</div>
-					</div>
-				</section>
-
-				<section class="post lab-notes" id="notes">
-					<header>
-						<h2>GeoServer Connection Notes</h2>
-					</header>
-					<p>Each pollutant map has one basemap and one selectable overlay layer. To connect a layer, put the WMS endpoint in <code>data-geoserver-url</code> and the full workspace-qualified layer name in <code>data-layer</code> on the corresponding dropdown option.</p>
-					<p>Legend images are loaded separately with GeoServer <code>GetLegendGraphic</code>. A legend is displayed only for dropdown options marked with <code>data-has-legend="true"</code>, such as the PM10 AMAC layer.</p>
-					<table>
-						<thead>
-							<tr>
-								<th>Pollutant</th>
-								<th>Map behavior</th>
-								<th>Layer choices</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>NO2</td>
-								<td>One full-width basemap</td>
-								<td>Pollution / Land Cover / Population placeholders</td>
-							</tr>
-							<tr>
-								<td>PM2.5</td>
-								<td>One full-width basemap</td>
-								<td>Pollution / Land Cover / Population placeholders</td>
-							</tr>
-							<tr>
-								<td>PM10</td>
-								<td>One full-width basemap</td>
-								<td>Four pollution layers, two land cover layers, and two population layers from GeoServer</td>
-							</tr>
-						</tbody>
-					</table>
 				</section>
 
 			</div>

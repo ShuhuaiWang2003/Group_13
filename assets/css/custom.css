@@ -376,6 +376,74 @@ button.map-control-button:focus {
 	margin-bottom: 1rem;
 }
 
+.results-grid {
+	display: grid;
+	gap: 1.25rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-top: 1.5rem;
+}
+
+.pollutant-result-column {
+	border: solid 2px #eeeeee;
+	border-radius: 6px;
+	padding: 1rem;
+}
+
+.pollutant-result-column > header {
+	border-bottom: solid 2px #eeeeee;
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+	text-align: center;
+}
+
+.pollutant-result-column > header h3 {
+	margin-bottom: 0;
+}
+
+.result-output-block + .result-output-block {
+	border-top: solid 2px #eeeeee;
+	margin-top: 1.25rem;
+	padding-top: 1.25rem;
+}
+
+.result-output-block h4 {
+	font-size: 0.85rem;
+	letter-spacing: 0.04em;
+	margin: 0 0 0.75rem 0;
+}
+
+.result-output-block .output-image {
+	max-height: 18rem;
+}
+
+.result-output-block .output-placeholder {
+	min-height: 11rem;
+}
+
+.result-output-block .compact-data-table {
+	font-size: 0.74rem;
+	min-width: 24rem;
+}
+
+.result-output-block .compact-data-table th,
+.result-output-block .compact-data-table td {
+	padding: 0.35rem 0.4rem;
+}
+
+.result-text-placeholder {
+	background: #ffffff;
+	border: dashed 1px #d9dee3;
+	border-radius: 4px;
+	color: #717981;
+	margin-top: 0.75rem;
+	min-height: 5.5rem;
+	padding: 0.75rem;
+}
+
+.result-text-placeholder p {
+	margin-bottom: 0;
+}
+
 .workflow-table th {
 	background: #f4f7f9;
 	font-weight: 900;
@@ -387,7 +455,8 @@ button.map-control-button:focus {
 }
 
 @media screen and (max-width: 980px) {
-	.summary-grid {
+	.summary-grid,
+	.results-grid {
 		grid-template-columns: 1fr;
 	}
 

@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/custom.css?v=20260604-pages" />
+		<link rel="stylesheet" href="assets/css/custom.css?v=20260604-results" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -49,15 +49,123 @@
 					</section>
 					<section>
 						<header>
-							<h3>Optional Supporting Files</h3>
+							<h3>Pollutant-Specific Outputs</h3>
+							<p>Each pollutant column is organized in the same order: pollution chart, land cover output, and population output.</p>
 						</header>
-						<ul>
-						<li>Bulgaria AMAC pollutant maps for NO2, PM2.5, and PM10.</li>
-						<li>Bulgaria land cover change map for 2021-2023.</li>
-						<li>Land cover statistical table showing stability, gains, and losses.</li>
-						<li>Bivariate exposure layers combining population and pollution classes.</li>
-						<li>Chart layers or figures summarizing exposure and pollutant classes.</li>
-						</ul>
+						<div class="results-grid">
+							<section class="pollutant-result-column">
+								<header>
+									<h3>NO2</h3>
+								</header>
+								<article class="result-output-block">
+									<h4>Pollution Chart</h4>
+									<div class="output-placeholder">
+										<p>NO2 pollution chart placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for NO2 pollution chart interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Land Cover</h4>
+									<div class="output-placeholder">
+										<p>NO2 land cover output placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for NO2 land cover interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Population</h4>
+									<div class="output-placeholder">
+										<p>NO2 population output placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for NO2 population exposure interpretation.</p>
+									</div>
+								</article>
+							</section>
+							<section class="pollutant-result-column">
+								<header>
+									<h3>PM2.5</h3>
+								</header>
+								<article class="result-output-block">
+									<h4>Pollution Chart</h4>
+									<div class="output-placeholder">
+										<p>PM2.5 pollution chart placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM2.5 pollution chart interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Land Cover</h4>
+									<div class="output-placeholder">
+										<p>PM2.5 land cover output placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM2.5 land cover interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Population</h4>
+									<div class="output-placeholder">
+										<p>PM2.5 population output placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM2.5 population exposure interpretation.</p>
+									</div>
+								</article>
+							</section>
+							<section class="pollutant-result-column">
+								<header>
+									<h3>PM10</h3>
+								</header>
+								<article class="result-output-block">
+									<h4>Pollution Chart</h4>
+									<div class="output-placeholder">
+										<p>PM10 pollution chart placeholder.</p>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM10 pollution chart interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Land Cover</h4>
+									<img class="output-image" src="assets/data/landcover/zonal-statistics-lcc.png" alt="Zonal Statistics by Land Cover Change" />
+									<div class="table-wrapper output-table-frame">
+										<table class="compact-data-table">
+											<thead>
+												<tr>
+													<th>Indicator</th>
+													<th>Value</th>
+													<th>Category</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr><td>stability(persistence)</td><td>0.9493</td><td>N/A (Baseline)</td></tr>
+												<tr><td>Primary source of gain</td><td>0.6216</td><td>Rangeland (code11)</td></tr>
+												<tr><td>Secondary source of gain</td><td>0.3295</td><td>Crops (code5)</td></tr>
+												<tr><td>Third source of gain</td><td>0.0333</td><td>Built (code7)</td></tr>
+												<tr><td>Primary source of destination</td><td>0.8436</td><td>Rangeland (code11)</td></tr>
+												<tr><td>Secondary source of destination</td><td>0.1288</td><td>Crops (code5)</td></tr>
+												<tr><td>Third source of destination</td><td>0.0184</td><td>Built (code7)</td></tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM10 land cover interpretation.</p>
+									</div>
+								</article>
+								<article class="result-output-block">
+									<h4>Population</h4>
+									<img class="output-image" src="assets/data/population/pm10-population-exposure.png" alt="PM10 Population Exposure in Bulgaria 2023" />
+									<div class="result-text-placeholder">
+										<p>Text reserved for PM10 population exposure interpretation.</p>
+									</div>
+								</article>
+							</section>
+						</div>
 					</section>
 				</article>
 			</div>
