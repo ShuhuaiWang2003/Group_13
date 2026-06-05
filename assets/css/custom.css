@@ -437,6 +437,24 @@ button.map-control-button:focus {
 	text-align: right;
 }
 
+.home-study-overview {
+	margin-top: 3rem;
+	text-align: left;
+}
+
+.home-study-overview .major {
+	text-align: center;
+}
+
+.home-study-overview h3 {
+	letter-spacing: 0.03em;
+	margin: 2rem 0 0.85rem 0;
+}
+
+.home-study-overview ul {
+	margin-top: -0.25rem;
+}
+
 .content-page section + section {
 	margin-top: 2.25rem;
 }
