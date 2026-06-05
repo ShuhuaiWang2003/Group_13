@@ -540,6 +540,32 @@ button.map-control-button:focus {
 	margin-bottom: 1rem;
 }
 
+.analysis-section > header {
+	margin-bottom: 1rem;
+	text-align: left;
+}
+
+.analysis-section > header h3 {
+	margin-bottom: 0.5rem;
+}
+
+.analysis-divider {
+	border: 0;
+	border-top: solid 2px #eeeeee;
+	margin: 2.5rem 0;
+}
+
+.analysis-output-list {
+	display: grid;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.analysis-output-list .result-output-block {
+	border-top: solid 2px #eeeeee;
+	padding-top: 1.5rem;
+}
+
 .results-grid {
 	display: grid;
 	gap: 1.25rem;
