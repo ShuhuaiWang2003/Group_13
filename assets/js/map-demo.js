@@ -72,6 +72,30 @@
 			title: "NO2 Land Cover Zonal Statistics",
 			label: "Zonal statistics pattern fill"
 		},
+		"assets/legend/pm10/cams_2023_12.sld": {
+			type: "gradient",
+			title: "CAMS PM10 2023 12",
+			startColor: "#000000",
+			endColor: "#ffffff",
+			startLabel: "0",
+			endLabel: "255"
+		},
+		"assets/legend/pm10/average_2023.sld": {
+			type: "gradient",
+			title: "Average PM10 2023",
+			startColor: "#000000",
+			endColor: "#ffffff",
+			startLabel: "0",
+			endLabel: "255"
+		},
+		"assets/legend/pm10/concentration.sld": {
+			type: "items",
+			title: "PM10 Concentration 2023",
+			items: [
+				{ color: "#000000", label: "Class 1" },
+				{ color: "#ffffff", label: "Class 2" }
+			]
+		},
 		"assets/legend/pm10/chart.sld": {
 			type: "items",
 			title: "PM10 Population Chart",
