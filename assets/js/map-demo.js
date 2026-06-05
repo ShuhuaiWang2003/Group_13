@@ -370,6 +370,7 @@
 		var localModel = LOCAL_SLD_LEGENDS[sldUrl] || LOCAL_SLD_LEGENDS[decodeURIComponent(sldUrl || "")];
 
 		legendNode.dataset.legendToken = token;
+		legendNode.classList.remove("map-legend-large");
 		legendNode.hidden = false;
 
 		if (localModel) {
@@ -403,8 +404,15 @@
 	}
 
 	function renderGeoServerLegend(legendNode, geoserverUrl, layerName, styleName, label) {
+		legendNode.classList.remove("map-legend-large");
 		legendNode.hidden = false;
 		legendNode.innerHTML = '<img alt="' + escapeHtml(label) + ' legend" src="' + escapeHtml(buildLegendUrl(geoserverUrl, layerName, styleName)) + '" />';
+	}
+
+	function renderImageLegend(legendNode, imageUrl, label) {
+		legendNode.classList.add("map-legend-large");
+		legendNode.hidden = false;
+		legendNode.innerHTML = '<img class="map-legend-image map-legend-image-large" alt="' + escapeHtml(label) + ' legend" src="' + escapeHtml(imageUrl) + '" />';
 	}
 
 	function updateLoadingProgress(mapNode, percent) {
@@ -500,8 +508,10 @@
 		var layerName = selectedOption ? selectedOption.dataset.layer || "" : "";
 		var geoserverUrl = selectedOption ? selectedOption.dataset.geoserverUrl || "" : "";
 		var styleName = selectedOption ? selectedOption.dataset.style || "" : "";
+		var legendImageUrl = selectedOption ? selectedOption.dataset.legendImage || "" : "";
 		var legendSldUrl = selectedOption ? selectedOption.dataset.legendSld || "" : "";
 		var isPanning = mapNode._panState && mapNode._panState.active;
+		var shouldShowImageLegend = selectedOption && !isPanning && legendImageUrl;
 		var shouldShowSldLegend = selectedOption && !isPanning && legendSldUrl;
 		var shouldShowLegend = selectedOption && !isPanning && selectedOption.dataset.hasLegend === "true" && geoserverUrl && layerName;
 		var boundsNorthWest = worldToLonLat(geometry.topLeft.x, geometry.topLeft.y, geometry.zoom);
@@ -554,12 +564,15 @@
 
 		var legendNode = getLegendNode(mapNode);
 
-		if (shouldShowSldLegend) {
+		if (shouldShowImageLegend) {
+			renderImageLegend(legendNode, legendImageUrl, label);
+		} else if (shouldShowSldLegend) {
 			renderSldLegend(legendNode, legendSldUrl, label);
 		} else if (shouldShowLegend) {
 			renderGeoServerLegend(legendNode, geoserverUrl, layerName, styleName, label);
 		} else {
 			legendNode.dataset.legendToken = "";
+			legendNode.classList.remove("map-legend-large");
 			legendNode.innerHTML = '<img alt="Selected layer legend" />';
 			legendNode.hidden = true;
 		}

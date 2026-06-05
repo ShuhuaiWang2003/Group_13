@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/custom.css?v=20260605-no2-legend" />
+		<link rel="stylesheet" href="assets/css/custom.css?v=20260605-bivariate-legend" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -67,7 +67,7 @@
 										<option value="no2-landcover-zonal-statistics" data-label="NO2 Land Cover Zonal Statistics" data-layer="gisgeoserver_13:Bulgaria_no2_zonal_statistics_2021_2023" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms" data-legend-sld="assets/legend/no2/zonal%20statistics.sld">Zonal Statistics</option>
 									</optgroup>
 									<optgroup label="Population">
-										<option value="no2-population-bivariate" data-label="NO2 Population Bivariate" data-layer="gisgeoserver_13:no2_pop_Bulgaria_no2_2023_bivariate" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms" data-legend-sld="assets/legend/no2/bivariate.sld">Bivariate</option>
+										<option value="no2-population-bivariate" data-label="NO2 Population Bivariate" data-layer="gisgeoserver_13:no2_pop_Bulgaria_no2_2023_bivariate" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms" data-legend-image="assets/legend/bivariate/legend_bivariate_5x5.png">Bivariate</option>
 										<option value="no2-population-chart" data-label="NO2 Population Chart" data-layer="gisgeoserver_13:bulgaria_no2_2023_chart__pie_chart" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms" data-legend-sld="assets/legend/no2/chart.sld">Chart</option>
 									</optgroup>
 								</select>
@@ -99,7 +99,7 @@
 									<option value="none">None</option>
 									<option value="pollution" data-label="PM2.5 Pollution" data-layer="your_workspace:pm25_pollution" data-geoserver-url="">Pollution</option>
 									<option value="landcover" data-label="PM2.5 Land Cover" data-layer="your_workspace:pm25_landcover" data-geoserver-url="">Land Cover</option>
-									<option value="population" data-label="PM2.5 Population" data-layer="your_workspace:pm25_population" data-geoserver-url="">Population</option>
+									<option value="population" data-label="PM2.5 Population Bivariate" data-layer="your_workspace:pm25_population" data-geoserver-url="" data-legend-image="assets/legend/bivariate/legend_bivariate_5x5.png">Population</option>
 								</select>
 							</label>
 						</div>
@@ -138,7 +138,7 @@
 										<option value="landcover-zonal-statistics" data-label="Land Cover Zonal Statistics" data-layer="gisgeoserver_13:bulgaria_pm10_zonal_statistics_2021_2023__bg_zonal_statistics" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms">Zonal Statistics</option>
 									</optgroup>
 									<optgroup label="Population">
-										<option value="population-bivariate" data-label="PM10 Population Bivariate" data-layer="gisgeoserver_13:pm10_pop_Bulgaria_pm10_2023_bivariate" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms">Bivariate</option>
+										<option value="population-bivariate" data-label="PM10 Population Bivariate" data-layer="gisgeoserver_13:pm10_pop_Bulgaria_pm10_2023_bivariate" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms" data-legend-image="assets/legend/bivariate/legend_bivariate_5x5.png">Bivariate</option>
 										<option value="population-chart" data-label="PM10 Population Chart" data-layer="gisgeoserver_13:pm10_pop_Bulgaria_pm10_2023_chart" data-geoserver-url="https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_13/wms">Chart</option>
 									</optgroup>
 								</select>
@@ -182,7 +182,7 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/map-demo.js?v=20260605-no2-legend-local"></script>
+		<script src="assets/js/map-demo.js?v=20260605-bivariate-legend"></script>
 
 	</body>
 </html>

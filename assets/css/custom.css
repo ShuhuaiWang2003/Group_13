@@ -263,6 +263,15 @@ button.map-control-button:focus {
 	max-width: 100%;
 }
 
+.map-legend.map-legend-large {
+	max-width: min(24rem, calc(100% - 2rem));
+}
+
+.map-legend-image-large {
+	max-height: 18rem;
+	object-fit: contain;
+}
+
 .sld-legend {
 	color: #212931;
 	font-size: 0.78rem;
