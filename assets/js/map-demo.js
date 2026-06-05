@@ -10,6 +10,68 @@
 	var MAX_ZOOM = 12;
 	var MAX_WEB_MERCATOR_LAT = 85.05112878;
 	var SLD_LEGEND_CACHE = {};
+	var LOCAL_SLD_LEGENDS = {
+		"assets/legend/no2/cams_12.sld": {
+			type: "gradient",
+			title: "CAMS NO2 2023 12",
+			startColor: "#000000",
+			endColor: "#ffffff",
+			startLabel: "0",
+			endLabel: "255"
+		},
+		"assets/legend/no2/average_2023.sld": {
+			type: "gradient",
+			title: "Average NO2 2023",
+			startColor: "#000000",
+			endColor: "#ffffff",
+			startLabel: "0",
+			endLabel: "255"
+		},
+		"assets/legend/no2/concentration.sld": {
+			type: "gradient",
+			title: "NO2 Concentration 2023",
+			startColor: "#000000",
+			endColor: "#ffffff",
+			startLabel: "0",
+			endLabel: "255"
+		},
+		"assets/legend/no2/bulgria_no2_2021_2023_AMAC_map_geoserver.sld": {
+			type: "items",
+			title: "Bulgaria NO2 2021-2023 AMAC map",
+			items: [
+				{ color: "#3462cf", label: "<= -5,0000" },
+				{ color: "#8b97cc", label: "-5,0000 - -2,0000" },
+				{ color: "#dadbc5", label: "-2,0000 - 0,0000" },
+				{ color: "#f7d59e", label: "0,0000 - 2,0000" },
+				{ color: "#e08865", label: "2,0000 - 5,0000" },
+				{ color: "#c44539", label: "> 5,0000" }
+			]
+		},
+		"assets/legend/no2/bivariate.sld": {
+			type: "symbol",
+			title: "NO2 Population Bivariate",
+			fill: "#f3a6b2",
+			stroke: "#232323",
+			label: "NO2 Population Bivariate"
+		},
+		"assets/legend/no2/chart.sld": {
+			type: "symbol",
+			title: "NO2 Population Chart",
+			fill: "#d5b43c",
+			stroke: "#232323",
+			label: "NO2 Population Chart"
+		},
+		"assets/legend/no2/zonal%20statistics.sld": {
+			type: "pattern",
+			title: "NO2 Land Cover Zonal Statistics",
+			label: "Zonal statistics pattern fill"
+		},
+		"assets/legend/no2/zonal statistics.sld": {
+			type: "pattern",
+			title: "NO2 Land Cover Zonal Statistics",
+			label: "Zonal statistics pattern fill"
+		}
+	};
 
 	function getNumber(value, fallback) {
 		var parsed = parseFloat(value);
@@ -305,11 +367,17 @@
 
 	function renderSldLegend(legendNode, sldUrl, label) {
 		var token = String(Date.now()) + String(Math.random());
+		var localModel = LOCAL_SLD_LEGENDS[sldUrl] || LOCAL_SLD_LEGENDS[decodeURIComponent(sldUrl || "")];
 
 		legendNode.dataset.legendToken = token;
 		legendNode.hidden = false;
-		legendNode.innerHTML = '<div class="sld-legend"><strong class="sld-legend-title">' + escapeHtml(label) + '</strong><p class="sld-legend-note">Loading legend...</p></div>';
 
+		if (localModel) {
+			legendNode.innerHTML = buildSldLegendHtml(localModel);
+			return;
+		}
+
+		legendNode.innerHTML = '<div class="sld-legend"><strong class="sld-legend-title">' + escapeHtml(label) + '</strong><p class="sld-legend-note">Loading legend...</p></div>';
 		(SLD_LEGEND_CACHE[sldUrl] || (SLD_LEGEND_CACHE[sldUrl] = fetch(sldUrl).then(function (response) {
 			if (!response.ok) {
 				throw new Error("Legend file not found");
