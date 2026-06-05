@@ -73,20 +73,26 @@
 			label: "Zonal statistics pattern fill"
 		},
 		"assets/legend/pm10/cams_2023_12.sld": {
-			type: "gradient",
+			type: "items",
 			title: "CAMS PM10 2023 12",
-			startColor: "#000000",
-			endColor: "#ffffff",
-			startLabel: "0",
-			endLabel: "255"
+			items: [
+				{ color: "#d7191c", label: "6.8850" },
+				{ color: "#fdae61", label: "14.2047" },
+				{ color: "#ffffc0", label: "21.5244" },
+				{ color: "#a6d96a", label: "28.8441" },
+				{ color: "#1a9641", label: "36.1638" }
+			]
 		},
 		"assets/legend/pm10/average_2023.sld": {
-			type: "gradient",
+			type: "items",
 			title: "Average PM10 2023",
-			startColor: "#000000",
-			endColor: "#ffffff",
-			startLabel: "0",
-			endLabel: "255"
+			items: [
+				{ color: "#d7191c", label: "10.5651" },
+				{ color: "#fdae61", label: "13.6765" },
+				{ color: "#ffffc0", label: "16.7878" },
+				{ color: "#a6d96a", label: "19.8992" },
+				{ color: "#1a9641", label: "23.0106" }
+			]
 		},
 		"assets/legend/pm10/concentration.sld": {
 			type: "items",

@@ -12,18 +12,14 @@
             <sld:ChannelSelection>
               <sld:GrayChannel>
                 <sld:SourceChannelName>1</sld:SourceChannelName>
-                <sld:ContrastEnhancement>
-                  <sld:Normalize>
-                    <sld:VendorOption name="algorithm">StretchToMinimumMaximum</sld:VendorOption>
-                    <sld:VendorOption name="minValue">10.5651</sld:VendorOption>
-                    <sld:VendorOption name="maxValue">23.0106</sld:VendorOption>
-                  </sld:Normalize>
-                </sld:ContrastEnhancement>
               </sld:GrayChannel>
             </sld:ChannelSelection>
-            <sld:ColorMap>
-              <sld:ColorMapEntry quantity="0" color="#000000"/>
-              <sld:ColorMapEntry quantity="255" color="#ffffff"/>
+            <sld:ColorMap type="ramp">
+              <sld:ColorMapEntry label="10.5651" quantity="10.565100828513" color="#d7191c"/>
+              <sld:ColorMapEntry label="13.6765" quantity="13.676469551319499" color="#fdae61"/>
+              <sld:ColorMapEntry label="16.7878" quantity="16.787838274125999" color="#ffffc0"/>
+              <sld:ColorMapEntry label="19.8992" quantity="19.899206996932499" color="#a6d96a"/>
+              <sld:ColorMapEntry label="23.0106" quantity="23.010575719738998" color="#1a9641"/>
             </sld:ColorMap>
           </sld:RasterSymbolizer>
         </sld:Rule>
