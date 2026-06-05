@@ -291,6 +291,8 @@ button.map-control-button:focus {
 .sld-legend-items {
 	list-style: none;
 	margin: 0;
+	max-height: 18rem;
+	overflow-y: auto;
 	padding: 0;
 }
 
