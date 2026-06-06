@@ -29,7 +29,7 @@
         </Rule>
         <Rule>
           <Name>Class 2</Name>
-          <Title>Class 2 (15–30 µg/m³)</Title>
+          <Title>Class 2 (15–31 µg/m³)</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>pol_class_max</ogc:PropertyName>

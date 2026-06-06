@@ -58,8 +58,8 @@
 			type: "items",
 			title: "NO2 Population Chart",
 			items: [
-				{ color: "#ffffff", label: "Class 1: pol_class_max = 1, NO2 annual average <= 10 \u00b5g/m\u00b3" },
-				{ color: "#e0ffff", label: "Class 2: pol_class_max = 2, NO2 annual average > 10 \u00b5g/m\u00b3" }
+				{ color: "#ffffff", label: "Class 1 (\u226410 \u00b5g/m\u00b3)" },
+				{ color: "#e0ffff", label: "Class 2 (10\u201325 \u00b5g/m\u00b3)" }
 			]
 		},
 		"assets/legend/no2/zonal%20statistics.sld": {
@@ -101,7 +101,7 @@
 			title: "PM10 Population Chart",
 			items: [
 				{ color: "#fffffe", label: "Class 1 (\u226415 \u00b5g/m\u00b3)" },
-				{ color: "#ddfffd", label: "Class 2 (15\u201330 \u00b5g/m\u00b3)" }
+				{ color: "#ddfffd", label: "Class 2 (15\u201331 \u00b5g/m\u00b3)" }
 			]
 		},
 		"assets/legend/lcc/esri_10m_lcc_legend.qml": {

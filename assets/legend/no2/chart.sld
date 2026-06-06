@@ -8,7 +8,7 @@
       <FeatureTypeStyle>
         <Rule>
           <Name>Class 1</Name>
-          <Title>Class 1: pol_class_max = 1, NO2 annual average &lt;= 10 µg/m³</Title>
+          <Title>Class 1 (≤10 µg/m³)</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>pol_class_max</ogc:PropertyName>
@@ -29,7 +29,7 @@
         </Rule>
         <Rule>
           <Name>Class 2</Name>
-          <Title>Class 2: pol_class_max = 2, NO2 annual average &gt; 10 µg/m³</Title>
+          <Title>Class 2 (10–25 µg/m³)</Title>
           <ogc:Filter>
             <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>pol_class_max</ogc:PropertyName>
