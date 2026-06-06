@@ -134,8 +134,8 @@
         <stdDevFactor>2</stdDevFactor>
       </minMaxOrigin>
       <colorPalette>
-        <paletteEntry value="1" color="#ddfffd" alpha="255" label="1"/>
-        <paletteEntry value="2" color="#00c3c3" alpha="255" label="2"/>
+        <paletteEntry value="1" color="#d9e6f7" alpha="255" label="Level 1 (&lt;=5 ug/m3)"/>
+        <paletteEntry value="2" color="#a9c4e8" alpha="255" label="Level 2 (&gt;5 and &lt;=10 ug/m3)"/>
       </colorPalette>
       <colorramp name="[source]" type="randomcolors">
         <Option/>

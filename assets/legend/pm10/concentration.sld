@@ -15,8 +15,8 @@
               </sld:GrayChannel>
             </sld:ChannelSelection>
             <sld:ColorMap type="values">
-              <sld:ColorMapEntry label="1" quantity="1" color="#000000"/>
-              <sld:ColorMapEntry label="2" quantity="2" color="#ffffff"/>
+              <sld:ColorMapEntry label="Level 1 (&lt;=15 ug/m3)" quantity="1" color="#d9e6f7"/>
+              <sld:ColorMapEntry label="Level 2 (&gt;15 and &lt;=31 ug/m3)" quantity="2" color="#a9c4e8"/>
             </sld:ColorMap>
           </sld:RasterSymbolizer>
         </sld:Rule>

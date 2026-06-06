@@ -31,8 +31,8 @@
 			type: "items",
 			title: "NO2 Concentration 2023",
 			items: [
-				{ color: "#000000", label: "Class 1" },
-				{ color: "#ffffff", label: "Class 2" }
+				{ color: "#d9e6f7", label: "Level 1 (<=10 ug/m3)" },
+				{ color: "#a9c4e8", label: "Level 2 (>10 and <=25 ug/m3)" }
 			]
 		},
 		"assets/legend/no2/bulgria_no2_2021_2023_AMAC_map_geoserver.sld": {
@@ -92,8 +92,8 @@
 			type: "items",
 			title: "PM2.5 Concentration 2023",
 			items: [
-				{ color: "#ddfffd", label: "Class 1" },
-				{ color: "#00c3c3", label: "Class 2" }
+				{ color: "#d9e6f7", label: "Level 1 (<=5 ug/m3)" },
+				{ color: "#a9c4e8", label: "Level 2 (>5 and <=10 ug/m3)" }
 			]
 		},
 		"assets/legend/pm10/2023_12.qml": {
@@ -116,8 +116,8 @@
 			type: "items",
 			title: "PM10 Concentration 2023",
 			items: [
-				{ color: "#000000", label: "Class 1" },
-				{ color: "#ffffff", label: "Class 2" }
+				{ color: "#d9e6f7", label: "Level 1 (<=15 ug/m3)" },
+				{ color: "#a9c4e8", label: "Level 2 (>15 and <=31 ug/m3)" }
 			]
 		},
 		"assets/legend/pm10/chart.sld": {
