@@ -690,6 +690,8 @@ button.image-viewer-button:focus {
 	border-spacing: 0;
 	min-width: 34rem;
 	overflow: hidden;
+	table-layout: fixed;
+	width: 100%;
 }
 
 .landcover-stat-table caption {
@@ -705,10 +707,40 @@ button.image-viewer-button:focus {
 	text-transform: none;
 }
 
+.landcover-stat-table th,
+.landcover-stat-table td {
+	box-sizing: border-box;
+	height: 2.15rem;
+	line-height: 1.18;
+	vertical-align: middle;
+}
+
+.landcover-stat-table tbody td {
+	white-space: nowrap;
+}
+
+.landcover-stat-table th:nth-child(1),
+.landcover-stat-table td:nth-child(1) {
+	width: 36%;
+}
+
+.landcover-stat-table th:nth-child(2),
+.landcover-stat-table td:nth-child(2),
+.landcover-stat-table th:nth-child(3),
+.landcover-stat-table td:nth-child(3) {
+	width: 22%;
+}
+
+.landcover-stat-table th:nth-child(4),
+.landcover-stat-table td:nth-child(4) {
+	width: 20%;
+}
+
 .landcover-stat-table thead th {
 	background: #4a76c4;
 	border-bottom: solid 2px #c5cfe0;
 	color: #ffffff;
+	height: 3.15rem;
 }
 
 .landcover-stat-table .stat-section-label th {
@@ -717,6 +749,8 @@ button.image-viewer-button:focus {
 	font-size: 0.72rem;
 	font-weight: 900;
 	letter-spacing: 0;
+	height: 1.55rem;
+	line-height: 1.1;
 	padding-top: 0.5rem;
 	text-transform: none;
 }
