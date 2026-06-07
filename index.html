@@ -10,7 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/custom.css?v=20260607-home-workflow" />
+		<link rel="stylesheet" href="assets/css/custom.css?v=20260607-home-boundary-map" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -46,14 +46,8 @@
 										<option value="satellite">Satellite</option>
 									</select>
 								</label>
-								<label for="home-layer" class="home-layer-control" hidden>
-									Layer
-									<select id="home-layer" class="layer-select">
-										<option value="none">None</option>
-									</select>
-								</label>
 							</div>
-							<div class="pollutant-map home-map" id="home-map" data-map-center-lat="42.7661" data-map-center-lng="25.2383" data-map-zoom="6" data-empty-status="Bulgaria geographic location."></div>
+							<div class="pollutant-map home-map" id="home-map" data-map-center-lat="42.7661" data-map-center-lng="25.2383" data-map-zoom="6" data-boundary-url="assets/data/home/bulgaria-boundary.geojson" data-boundary-label="Bulgaria boundary" data-empty-status="Bulgaria boundary displayed."></div>
 							<p class="map-status">Bulgaria geographic location.</p>
 						</div>
 					</section>
@@ -129,7 +123,7 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
-		<script src="assets/js/map-demo.js?v=20260607-home-location-map"></script>
+		<script src="assets/js/map-demo.js?v=20260607-home-boundary-map"></script>
 
 	</body>
 </html>

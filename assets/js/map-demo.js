@@ -10,6 +10,7 @@
 	var MAX_ZOOM = 12;
 	var MAX_WEB_MERCATOR_LAT = 85.05112878;
 	var SLD_LEGEND_CACHE = {};
+	var BOUNDARY_LAYER_CACHE = {};
 	var LOCAL_SLD_LEGENDS = {
 		"assets/legend/no2/2023_12.qml": {
 			type: "gradient",
@@ -370,6 +371,106 @@
 		return baseUrl + (baseUrl.indexOf("?") === -1 ? "?" : "&") + params.toString();
 	}
 
+	function getBoundaryLayer(url) {
+		if (!BOUNDARY_LAYER_CACHE[url]) {
+			BOUNDARY_LAYER_CACHE[url] = fetch(url).then(function (response) {
+				if (!response.ok) {
+					throw new Error("Boundary layer not found");
+				}
+
+				return response.json();
+			});
+		}
+
+		return BOUNDARY_LAYER_CACHE[url];
+	}
+
+	function formatPathNumber(value) {
+		return String(Math.round(value * 10) / 10);
+	}
+
+	function boundaryCoordinateToPoint(coordinate, geometry) {
+		var world = lonLatToWorld(coordinate[0], coordinate[1], geometry.zoom);
+
+		return formatPathNumber(world.x - geometry.topLeft.x) + " " + formatPathNumber(world.y - geometry.topLeft.y);
+	}
+
+	function boundaryRingToPath(ring, geometry) {
+		var path = "";
+
+		if (!ring || ring.length < 3) {
+			return "";
+		}
+
+		ring.forEach(function (coordinate, index) {
+			path += (index === 0 ? "M" : "L") + boundaryCoordinateToPoint(coordinate, geometry);
+		});
+
+		return path + "Z";
+	}
+
+	function boundaryPolygonToPath(polygon, geometry) {
+		return (polygon || []).map(function (ring) {
+			return boundaryRingToPath(ring, geometry);
+		}).join("");
+	}
+
+	function boundaryFeatureToPath(feature, geometry) {
+		var featureGeometry = feature.geometry || {};
+
+		if (featureGeometry.type === "Polygon") {
+			return boundaryPolygonToPath(featureGeometry.coordinates, geometry);
+		}
+
+		if (featureGeometry.type === "MultiPolygon") {
+			return (featureGeometry.coordinates || []).map(function (polygon) {
+				return boundaryPolygonToPath(polygon, geometry);
+			}).join("");
+		}
+
+		return "";
+	}
+
+	function buildBoundarySvg(data, geometry, label) {
+		var paths = (data.features || []).map(function (feature) {
+			var path = boundaryFeatureToPath(feature, geometry);
+
+			if (!path) {
+				return "";
+			}
+
+			return '<path d="' + path + '" fill="#e31a1c" fill-opacity="0.26" fill-rule="evenodd" stroke="#b30000" stroke-width="2.4" vector-effect="non-scaling-stroke"><title>' + escapeHtml(label) + "</title></path>";
+		}).join("");
+
+		return '<svg class="simple-map-boundary-overlay" role="img" aria-label="' + escapeHtml(label) + '" viewBox="0 0 ' + Math.round(geometry.width) + " " + Math.round(geometry.height) + '" preserveAspectRatio="none"><g>' + paths + "</g></svg>";
+	}
+
+	function renderBoundaryLayer(mapNode, statusNode, boundaryUrl, boundaryLabel, geometry) {
+		var token = String(Date.now()) + String(Math.random());
+		var label = boundaryLabel || "Bulgaria boundary";
+
+		mapNode.dataset.boundaryToken = token;
+		getBoundaryLayer(boundaryUrl).then(function (data) {
+			if (mapNode.dataset.boundaryToken !== token) {
+				return;
+			}
+
+			mapNode.insertAdjacentHTML("beforeend", buildBoundarySvg(data, geometry, label));
+
+			if (statusNode) {
+				statusNode.textContent = mapNode.dataset.emptyStatus || "Bulgaria boundary displayed.";
+			}
+		}).catch(function () {
+			if (mapNode.dataset.boundaryToken !== token) {
+				return;
+			}
+
+			if (statusNode) {
+				statusNode.textContent = "Bulgaria boundary could not be loaded.";
+			}
+		});
+	}
+
 	function getLegendNode(mapNode) {
 		var legendNode = mapNode.querySelector(".map-legend");
 
@@ -655,7 +756,7 @@
 		var layerSelect = shell.querySelector(".layer-select");
 		var statusNode = shell.querySelector(".map-status");
 
-		if (!mapNode || !basemapSelect || !layerSelect) {
+		if (!mapNode || !basemapSelect) {
 			return;
 		}
 
@@ -665,7 +766,7 @@
 		var startTileY = Math.floor(geometry.topLeft.y / TILE_SIZE);
 		var endTileY = Math.floor(geometry.bottomRight.y / TILE_SIZE);
 		var maxTile = Math.pow(2, geometry.zoom) - 1;
-		var selectedOption = layerSelect.options[layerSelect.selectedIndex];
+		var selectedOption = layerSelect ? layerSelect.options[layerSelect.selectedIndex] : null;
 		var label = selectedOption ? selectedOption.dataset.label || selectedOption.textContent : "";
 		var layerName = selectedOption ? selectedOption.dataset.layer || "" : "";
 		var geoserverUrl = selectedOption ? selectedOption.dataset.geoserverUrl || "" : "";
@@ -680,6 +781,8 @@
 		var boundsSouthEast = worldToLonLat(geometry.bottomRight.x, geometry.bottomRight.y, geometry.zoom);
 		var html = "";
 		var scaleLine = getScaleLine(geometry.centerLat, geometry.zoom);
+		var boundaryUrl = mapNode.dataset.boundaryUrl || "";
+		var boundaryLabel = mapNode.dataset.boundaryLabel || "Bulgaria boundary";
 
 		for (var tileX = startTileX; tileX <= endTileX; tileX += 1) {
 			for (var tileY = startTileY; tileY <= endTileY; tileY += 1) {
@@ -723,6 +826,10 @@
 		html += '<div class="map-attribution">' + (basemapSelect.value === "satellite" ? "Tiles &copy; Esri" : "&copy; OpenStreetMap contributors") + '</div>';
 		html += '<div class="map-loading" hidden><span data-loading-label>Loading 0%</span><i><b data-loading-bar style="width:0%"></b></i></div>';
 		mapNode.innerHTML = html;
+
+		if (boundaryUrl) {
+			renderBoundaryLayer(mapNode, statusNode, boundaryUrl, boundaryLabel, geometry);
+		}
 
 		var legendNode = getLegendNode(mapNode);
 
