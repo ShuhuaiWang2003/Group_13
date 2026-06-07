@@ -30,7 +30,8 @@ The page displays selected chart and table outputs directly in the page. It does
 
 ## Project Structure
 
-- `index.html`: Main web page.
+- `home.html`: Main home page.
+- `index.html`: Redirect page for GitHub Pages compatibility.
 - `assets/css/custom.css`: Custom layout, map, chart, and table styling.
 - `assets/js/map-demo.js`: Basemap tile rendering and GeoServer WMS overlay switching.
 - `assets/data/`: Supporting image and spreadsheet files used for page display.
